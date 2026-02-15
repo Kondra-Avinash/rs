@@ -22,7 +22,7 @@ public class RewardController {
         return service.assignReward(dto);
     }
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public List<RewardDTO> all(
             @RequestParam(required = false) RewardCategory category,
             @RequestParam(required = false) Long employeeId

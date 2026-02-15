@@ -22,7 +22,7 @@ public class RewardController {
         return service.assignReward(dto);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<RewardDTO> all(
             @RequestParam(required = false) RewardCategory category,
             @RequestParam(required = false) Long employeeId
@@ -48,7 +48,6 @@ public class RewardController {
     public RewardDTO getById(@PathVariable Long id) {
         return service.getById(id);
     }
-
 
 
 }

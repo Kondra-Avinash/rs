@@ -1,0 +1,49 @@
+<div class="container">
+  <mat-card class="add-employee-card">
+    <mat-card-header>
+      <mat-card-title>Add Employee</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="employeeForm" (ngSubmit)="submit()" class="employee-form">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter name">
+          <mat-error *ngIf="employeeForm.controls['name'].invalid && employeeForm.controls['name'].touched">
+            Name required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Department</mat-label>
+  <mat-select formControlName="department">
+    <mat-option value="Development">Development</mat-option>
+    <mat-option value="HR">HR</mat-option>
+    <mat-option value="Sales">Sales</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email">
+          <mat-error *ngIf="employeeForm.controls['email'].invalid && employeeForm.controls['email'].touched">
+            Valid Email required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="employeeForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Adding...' : 'Add' }}
+          </button>
+
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

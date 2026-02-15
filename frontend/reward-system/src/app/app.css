@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+}
+
+/* Layout container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #3f51b5;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 50px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.active-link {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+/* Page content */
+.content-area {
+  padding: 40px 40px;
+}
+
+
+/* Page Header */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #334155;
+}
+
+.page-title mat-icon {
+  font-size: 32px;
+  color: #3f51b5;
+}
+
+.page-actions {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}

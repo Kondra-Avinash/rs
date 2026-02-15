@@ -1,0 +1,51 @@
+<mat-form-field appearance="outline">
+  <mat-label>Filter by Department</mat-label>
+  <mat-select (selectionChange)="onDepartmentChange($event.value)">
+    <mat-option value="">All</mat-option>
+    <mat-option value="Development">Development</mat-option>
+    <mat-option value="HR">HR</mat-option>
+    <mat-option value="Sales">Sales</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+<div *ngIf="employees$ | async as response">
+
+  <div class="employee-grid">
+
+    <mat-card class="employee-card"
+              *ngFor="let employee of response.content">
+
+      <mat-card-header>
+        <mat-card-title>{{ employee.name }}</mat-card-title>
+        <mat-card-subtitle>ID: {{ employee.id }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Department: {{ employee.department }}</p>
+        <p>Email: {{ employee.email }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button
+          color="warn"
+          (click)="deleteEmployee(employee.id!, employee.name)">
+          Delete
+        </button>
+
+
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+
+  <mat-paginator
+    [length]="response.totalElements"
+    [pageSize]="response.size"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+</div>

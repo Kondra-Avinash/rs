@@ -1,0 +1,29 @@
+.content-area {
+  padding: 40px 80px;
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.reward-table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reward-table th {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.reward-table th,
+.reward-table td {
+  padding: 16px 20px;
+}
+
+.action-area {
+  margin-top: 30px;
+}

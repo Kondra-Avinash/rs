@@ -1,0 +1,25 @@
+.form-card {
+  padding: 24px;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+
+.form-grid mat-form-field {
+  width: 100%;
+}
+
+
+.button-row {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

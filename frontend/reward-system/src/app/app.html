@@ -1,0 +1,57 @@
+<div class="app-container">
+  <nav class="navbar">
+    <div class="navbar-brand">Employee Rewards System</div>
+
+    <div class="navbar-links">
+      <a routerLink="/employees"
+         routerLinkActive="active-link"
+         class="nav-item">
+        <mat-icon>group</mat-icon>
+        Employee List
+      </a>
+
+      <a routerLink="/add-employee"
+         routerLinkActive="active-link"
+         class="nav-item">
+        <mat-icon>person_add</mat-icon>
+        Add Employee
+      </a>
+
+      <a routerLink="/assign-reward"
+         routerLinkActive="active-link"
+         class="nav-item">
+        <mat-icon>card_giftcard</mat-icon>
+        Assign Reward
+      </a>
+
+      <a routerLink="/rewards"
+         routerLinkActive="active-link"
+         class="nav-item">
+        <mat-icon>emoji_events</mat-icon>
+        Reward List
+      </a>
+    </div>
+  </nav>
+
+  <main class="content-area">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-title">
+        <mat-icon>group</mat-icon>
+        <h1>Employees</h1>
+      </div>
+
+      <div class="page-actions">
+        <a mat-raised-button
+           color="primary"
+           routerLink="/add-employee">
+          Add Employee
+        </a>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+
+  </main>
+</div>

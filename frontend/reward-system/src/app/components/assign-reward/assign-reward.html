@@ -1,0 +1,46 @@
+<h2>Assign Reward</h2>
+
+<mat-card class="form-card">
+  <form [formGroup]="rewardForm" (ngSubmit)="submit()" class="form-grid">
+
+    <!-- Row 1 -->
+    <mat-form-field appearance="outline">
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="employeeId">
+        <mat-option *ngFor="let emp of employees" [value]="emp.id">
+          {{ emp.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Reward Name</mat-label>
+      <input matInput formControlName="rewardName" />
+    </mat-form-field>
+
+    <!-- Row 2 -->
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option value="PERFORMANCE">Performance</mat-option>
+        <mat-option value="INNOVATION">Innovation</mat-option>
+        <mat-option value="TEAMWORK">Teamwork</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date Awarded</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateAwarded">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Button Row -->
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit">
+        Assign
+      </button>
+    </div>
+
+  </form>
+</mat-card>

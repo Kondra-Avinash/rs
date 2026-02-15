@@ -34,12 +34,21 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let r">
+      
+        <button mat-button color="primary"
+          [routerLink]="['/assign-reward', r.id]">
+          Edit
+        </button>
+
+      
         <button mat-button color="warn"
                 (click)="deleteReward(r.id!)">
           Delete
         </button>
+      
       </td>
     </ng-container>
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

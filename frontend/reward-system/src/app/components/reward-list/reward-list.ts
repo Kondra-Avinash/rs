@@ -9,7 +9,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from '../../confirm-delete-dialog/confirm-delete-dialog';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reward-list',
@@ -32,7 +32,8 @@ export class RewardListComponent {
   constructor(
     private rewardService: RewardService,
     private employeeService: EmployeeService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.data$ = forkJoin({
       employees: this.employeeService.getAllSimple(),
@@ -40,8 +41,14 @@ export class RewardListComponent {
     });
   }
 
+
   getEmployeeName(employeeId: number, employees: Employee[]): string {
     return employees.find(e => e.id === employeeId)?.name || 'Unknown';
+  }
+
+
+  editReward(reward: Reward) {
+    this.router.navigate(['/assign-reward', reward.id]);
   }
 
   loadData() {

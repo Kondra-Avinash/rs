@@ -127,4 +127,89 @@ public class RewardServiceImpl implements RewardService {
 
         rewardRepo.deleteById(id);
     }
+
+    @Override
+    public RewardDTO updateReward(Long id, RewardDTO dto) {
+
+        Reward reward = rewardRepo.findById(id)
+                .orElseThrow(() -> new RewardNotFoundException(id));
+
+        // Fetch employee again (in case employee changes)
+        Employee emp = employeeRepo.findById(dto.getEmployeeId())
+                .orElseThrow(() -> new EmployeeNotFoundException(dto.getEmployeeId()));
+
+        // 🔥 Prevent duplicate (excluding current record)
+        boolean duplicateExists = rewardRepo
+                .existsByEmployeeIdAndRewardNameAndDateAwarded(
+                        dto.getEmployeeId(),
+                        dto.getRewardName(),
+                        dto.getDateAwarded()
+                );
+
+        if (duplicateExists &&
+                !(reward.getRewardName().equals(dto.getRewardName())
+                        && reward.getDateAwarded().equals(dto.getDateAwarded()))) {
+
+            throw new DuplicateRewardException(
+                    "This reward is already assigned to the employee on this date"
+            );
+        }
+
+        // 🔥 Monthly limit rule (excluding current reward)
+        LocalDate date = dto.getDateAwarded();
+        LocalDate start = date.withDayOfMonth(1);
+        LocalDate end = date.withDayOfMonth(date.lengthOfMonth());
+
+        long rewardCount = rewardRepo.countRewardsForMonth(
+                dto.getEmployeeId(),
+                start,
+                end
+        );
+
+        // subtract current reward if month didn't change
+        if (reward.getDateAwarded().getMonth().equals(date.getMonth())) {
+            rewardCount--;
+        }
+
+        if (rewardCount >= 3) {
+            throw new RewardLimitExceededException(
+                    "Employee cannot receive more than 3 rewards in a month"
+            );
+        }
+
+        // 🔥 Update fields
+        reward.setRewardName(dto.getRewardName());
+        reward.setDateAwarded(dto.getDateAwarded());
+        reward.setCategory(dto.getCategory());
+        reward.setEmployee(emp);
+
+        Reward updated = rewardRepo.save(reward);
+
+        RewardDTO response = new RewardDTO();
+        response.setId(updated.getId());
+        response.setEmployeeId(updated.getEmployee().getId());
+        response.setRewardName(updated.getRewardName());
+        response.setDateAwarded(updated.getDateAwarded());
+        response.setCategory(updated.getCategory());
+
+        return response;
+    }
+
+    @Override
+    public RewardDTO getById(Long id) {
+
+        Reward reward = rewardRepo.findById(id)
+                .orElseThrow(() -> new RewardNotFoundException(id));
+
+        RewardDTO dto = new RewardDTO();
+        dto.setId(reward.getId());
+        dto.setEmployeeId(reward.getEmployee().getId());
+        dto.setRewardName(reward.getRewardName());
+        dto.setDateAwarded(reward.getDateAwarded());
+        dto.setCategory(reward.getCategory());
+
+        return dto;
+    }
+
+
 }

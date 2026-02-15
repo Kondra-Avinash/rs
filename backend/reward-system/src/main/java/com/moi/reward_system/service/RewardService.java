@@ -14,4 +14,10 @@ public interface RewardService {
     );
 
     void deleteReward(Long id);
+
+    RewardDTO updateReward(Long id, RewardDTO dto);
+
+    RewardDTO getById(Long id);
+
+
 }

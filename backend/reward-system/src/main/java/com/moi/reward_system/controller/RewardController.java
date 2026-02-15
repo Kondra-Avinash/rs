@@ -35,4 +35,19 @@ public class RewardController {
     public void delete(@PathVariable Long id) {
         service.deleteReward(id);
     }
+
+    @PutMapping("/{id}")
+    public RewardDTO update(
+            @PathVariable Long id,
+            @RequestBody RewardDTO dto
+    ) {
+        return service.updateReward(id, dto);
+    }
+
+    @GetMapping("/{id}")
+    public RewardDTO getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+
 }

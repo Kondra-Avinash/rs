@@ -10,5 +10,8 @@ export const routes: Routes = [
   { path: 'add-employee', component: AddEmployeeComponent },
   { path: 'assign-reward', component: AssignRewardComponent },
   { path: 'rewards', component: RewardListComponent },
+  { path: 'assign-reward', component: AssignRewardComponent },
+  { path: 'assign-reward/:id', component: AssignRewardComponent },
+
 ];
 

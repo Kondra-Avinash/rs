@@ -13,13 +13,14 @@ export interface Reward {
 
 @Injectable({ providedIn: 'root' })
 export class RewardService {
-  private baseUrl = `http://localhost:8080/api/rewards`;
-
+  private baseUrl = `${environment.apiUrl}/api/rewards`;
+  
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Reward[]> {
-    return this.http.get<Reward[]>(this.baseUrl);
+    return this.http.get<Reward[]>(`${this.baseUrl}/all`);
   }
+
 
   assign(reward: Reward): Observable<Reward> {
     return this.http.post<Reward>(this.baseUrl, reward);
